@@ -63,7 +63,7 @@ const Navbar = () => {
         <div className="flex items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <span className="text-2xl font-semibold text-gray-300">
                 Liyano
               </span>
@@ -71,7 +71,7 @@ const Navbar = () => {
               <span className=" text-2xl font-semibold text-gray-300">
                 press
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -135,13 +135,13 @@ const Navbar = () => {
                           >
                             <div className="py-1">
                               {link.submenu.map((subItem) => (
-                                <a
+                                <Link
                                   key={subItem.name}
-                                  href={subItem.href}
+                                  to={subItem.href}
                                   className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800"
                                 >
                                   {subItem.name}
-                                </a>
+                                </Link>
                               ))}
                             </div>
                           </motion.div>
