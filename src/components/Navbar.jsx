@@ -3,69 +3,75 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
+const navLinks = [
+  {
+    name: "Women",
+    submenu: [
+      { name: "Accessories", href: "/women/accessories" },
+      { name: "Fashions", href: "/women/fashions" },
+    ],
+  },
+  {
+    name: "Men",
+    submenu: [
+      { name: "Accessories", href: "/women/accessories" },
+      { name: "Fashions", href: "/women/fashions" },
+    ],
+  },
+  {
+    name: "Unisex",
+    submenu: [
+      { name: "Accessories", href: "/women/accessories" },
+      { name: "Fashions", href: "/women/fashions" },
+    ],
+  },
+  {
+    name: "Contact",
+    href: "/contact-us", // Changed to direct link without submenu
+  },
+];
+
+const dropdownVariants = {
+  // hidden: { opacity: 0, y: 10 },
+  // visible: { opacity: 1, y: 0 },
+  // exit: { opacity: 0, y: 10 },
+  hidden: {
+    opacity: 0,
+    y: -20, // Start 20px above (change this value to adjust starting position)
+    scaleY: 0.8, // Slightly compressed at start
+  },
+  visible: {
+    opacity: 1,
+    y: 0, // End at normal position
+    scaleY: 1, // Full scale
+  },
+  exit: {
+    opacity: 0,
+    y: -10, // Exit slightly above
+    scaleY: 0.9, // Slightly compressed when exiting
+  },
+};
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    {
-      name: "Women",
-      submenu: [
-        { name: "Accessories", href: "/women/accessories" },
-        { name: "Fashions", href: "/women/fashions" },
-      ],
-    },
-    {
-      name: "Men",
-      submenu: [
-        { name: "Accessories", href: "/women/accessories" },
-        { name: "Fashions", href: "/women/fashions" },
-      ],
-    },
-    {
-      name: "Unisex",
-      submenu: [
-        { name: "Accessories", href: "/women/accessories" },
-        { name: "Fashions", href: "/women/fashions" },
-      ],
-    },
-    {
-      name: "Contact",
-      href: "/contact", // Changed to direct link without submenu
-    },
-  ];
-
-  const dropdownVariants = {
-    // hidden: { opacity: 0, y: 10 },
-    // visible: { opacity: 1, y: 0 },
-    // exit: { opacity: 0, y: 10 },
-    hidden: {
-      opacity: 0,
-      y: -20, // Start 20px above (change this value to adjust starting position)
-      scaleY: 0.8, // Slightly compressed at start
-    },
-    visible: {
-      opacity: 1,
-      y: 0, // End at normal position
-      scaleY: 1, // Full scale
-    },
-    exit: {
-      opacity: 0,
-      y: -10, // Exit slightly above
-      scaleY: 0.9, // Slightly compressed when exiting
-    },
-  };
-
   return (
-    <nav className="bg-gray-950 border-b border-gray-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16">
+    <nav className="bg-gray-950 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 items-center justify-center">
+        <div className="flex items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <span className="text-2xl font-semibold text-gray-300">Liyano</span>
-            <span className=" text-gray-500 text-5xl font-bold">X</span>
-            <span className=" text-2xl font-semibold text-gray-300">press</span>
+            <a href="/" className="flex items-center">
+              <span className="text-2xl font-semibold text-gray-300">
+                Liyano
+              </span>
+              <span className=" text-gray-500 text-5xl font-bold">X</span>
+              <span className=" text-2xl font-semibold text-gray-300">
+                press
+              </span>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
@@ -81,25 +87,25 @@ const Navbar = () => {
               >
                 {link.href ? (
                   // Regular link for Contact
-                  <a
-                    href={link.href}
-                    className="px-3 py-2 rounded-md text-md font-medium text-gray-500 hover:text-gray-300 transition-colors duration-200 items-center hover:bg-gray-800 hover:rounded-full hover:border-gray-100"
+                  <Link
+                    to={link.href}
+                    className="px-3 py-1 rounded-md text-md font-medium text-white hover:text-gray-300 transition-colors duration-200 items-center "
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ) : (
                   // Button with dropdown for other items
                   <>
                     <button
-                      className={`flex hover:bg-gray-800 hover:rounded-full hover:border-gray-100 items-center px-3 py-1 text-md font-medium ${
+                      className={`flex items-center px-3 py-1 text-md font-medium ${
                         activeDropdown === link.name
-                          ? "text-gray-500 hover:text-gray-300"
-                          : "text-gray-500 hover:text-gray-900"
+                          ? "text-white hover:text-gray-300"
+                          : "text-white hover:text-gray-900"
                       } transition-colors duration-200`}
                     >
                       {link.name}
                       <svg
-                        className={`w-5 h-5 ml-1 transition-transform ${
+                        className={`w-4 h-4 ml-1 transition-transform ${
                           activeDropdown === link.name ? "rotate-180" : ""
                         }`}
                         fill="none"
@@ -189,12 +195,12 @@ const Navbar = () => {
                 <div key={link.name} className="relative">
                   {link.href ? (
                     // Regular link for Contact in mobile
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:bg-gray-800 hover:text-gray-300 block"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   ) : (
                     // Button with dropdown for other items in mobile
                     <>
@@ -240,13 +246,13 @@ const Navbar = () => {
                             className="pl-4"
                           >
                             {link.submenu.map((subItem) => (
-                              <a
+                              <Link
                                 key={subItem.name}
-                                href={subItem.href}
+                                to={subItem.href}
                                 className="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-800 hover:text-gray-300"
                               >
                                 {subItem.name}
-                              </a>
+                              </Link>
                             ))}
                           </motion.div>
                         )}
