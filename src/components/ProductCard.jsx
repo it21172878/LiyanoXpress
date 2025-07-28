@@ -107,7 +107,7 @@ const ProductCard = ({ product }) => {
           </span>
         </div>
 
-        <a href={`/product/${product.id}`} className="block">
+        <Link to={`/product/${product.id}`} className="block">
           <motion.button
             variants={buttonVariants}
             initial="rest"
@@ -118,7 +118,7 @@ const ProductCard = ({ product }) => {
           >
             {product.inStock ? "Make it Yours" : "Out of Stock"}
           </motion.button>
-        </a>
+        </Link>
       </div>
     </motion.div>
   );
