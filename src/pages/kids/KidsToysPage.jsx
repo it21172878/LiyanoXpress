@@ -5,16 +5,14 @@ import { Products } from "../../utils/data";
 import ProductCard from "../../components/ProductCard";
 import { Ban } from "lucide-react";
 
-const WomenFashionsPage = () => {
-  // Filter products first to get only Kid's Fashions
-  const WomenFashionsProducts = Products.filter(
-    (product) => product.category === "Women's Fashions"
-  );
+const KidsToysPage = () => {
+  // Filter products first to get only Kid's Toys
+  const kidsToysProducts = Products.filter(product => product.category === "Kid's Toys");
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {WomenFashionsProducts.length > 0 ? (
+        {kidsToysProducts.length > 0 ? (
           <motion.div
             initial="hidden"
             animate="visible"
@@ -29,7 +27,7 @@ const WomenFashionsPage = () => {
             }}
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
-            {WomenFashionsProducts.map((product) => (
+            {kidsToysProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </motion.div>
@@ -42,11 +40,10 @@ const WomenFashionsPage = () => {
           >
             <Ban className="w-16 h-16 text-gray-400 mb-4" />
             <h2 className="text-2xl font-semibold text-gray-800">
-              No Women's Fashions Found
+              No Kid's Toys Found
             </h2>
             <p className="text-gray-500 mt-2 max-w-md">
-              Sorry, we don't have any Women's Fashions available at the moment.
-              Please check back later!
+              Sorry, we don't have any Kid's Toys available at the moment. Please check back later!
             </p>
           </motion.div>
         )}
@@ -54,4 +51,4 @@ const WomenFashionsPage = () => {
     </div>
   );
 };
-export default WomenFashionsPage;
+export default KidsToysPage;

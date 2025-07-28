@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
 
 const navLinks = [
   {
@@ -16,15 +15,15 @@ const navLinks = [
   {
     name: "Men",
     submenu: [
-      { name: "Accessories", href: "/women/accessories" },
-      { name: "Fashions", href: "/women/fashions" },
+      { name: "Accessories", href: "/men/accessories" },
+      { name: "Fashions", href: "/men/fashions" },
     ],
   },
   {
-    name: "Unisex",
+    name: "Kids",
     submenu: [
-      { name: "Accessories", href: "/women/accessories" },
-      { name: "Fashions", href: "/women/fashions" },
+      { name: "Fashions", href: "/kids/fashions" },
+      { name: "Toys", href: "/kids/toys" },
     ],
   },
   {
@@ -56,22 +55,54 @@ const dropdownVariants = {
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50); // Change threshold as needed
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-gray-950 sticky top-0 z-50">
+    <motion.nav 
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-gray-950/80 backdrop-blur-md border-b border-gray-800/50' 
+          : 'bg-gray-950'
+      }`}
+      animate={{
+        height: isScrolled ? 56 : 64, // Reduced height when scrolled
+      }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 items-center justify-center">
-        <div className="flex items-center h-16">
+        <div className={`flex items-center transition-all duration-300 ${
+          isScrolled ? 'h-14' : 'h-16'
+        }`}>
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <span className="text-2xl font-semibold text-gray-300">
-                Liyano
+            <a href="/" className="flex items-center">
+              <span className={`font-semibold text-gray-300 transition-all duration-300 ${
+                isScrolled ? 'text-base md:text-lg' : 'text-lg md:text-2xl'
+              }`}>
+                liyano
               </span>
-              <span className=" text-gray-500 text-5xl font-bold">X</span>
-              <span className=" text-2xl font-semibold text-gray-300">
+              <span className={`text-gray-500 font-bold transition-all duration-300 ${
+                isScrolled ? 'text-2xl md:text-3xl' : 'text-3xl md:text-5xl'
+              }`}>
+                X
+              </span>
+              <span className={`font-semibold text-gray-300 transition-all duration-300 ${
+                isScrolled ? 'text-sm md:text-lg' : 'text-lg md:text-2xl'
+              }`}>
                 press
               </span>
-            </Link>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
@@ -87,12 +118,12 @@ const Navbar = () => {
               >
                 {link.href ? (
                   // Regular link for Contact
-                  <Link
-                    to={link.href}
+                  <a
+                    href={link.href}
                     className="px-3 py-1 rounded-md text-md font-medium text-white hover:text-gray-300 transition-colors duration-200 items-center "
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 ) : (
                   // Button with dropdown for other items
                   <>
@@ -135,13 +166,13 @@ const Navbar = () => {
                           >
                             <div className="py-1">
                               {link.submenu.map((subItem) => (
-                                <Link
+                                <a
                                   key={subItem.name}
-                                  to={subItem.href}
+                                  href={subItem.href}
                                   className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800"
                                 >
                                   {subItem.name}
-                                </Link>
+                                </a>
                               ))}
                             </div>
                           </motion.div>
@@ -158,23 +189,54 @@ const Navbar = () => {
           <div className="md:hidden flex items-center ml-auto">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-300 hover:bg-gray-800 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-300 hover:bg-gray-800 focus:outline-none transition-colors duration-200"
             >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="block h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <span className="sr-only">
+                {mobileMenuOpen ? 'Close main menu' : 'Open main menu'}
+              </span>
+              
+              {/* Animated icon transition */}
+              <div className="relative w-6 h-6">
+                {/* Hamburger Menu Icon */}
+                <svg
+                  className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                    mobileMenuOpen 
+                      ? 'opacity-0 rotate-180 scale-75' 
+                      : 'opacity-100 rotate-0 scale-100'
+                  }`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+
+                {/* Close/X Icon */}
+                <svg
+                  className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                    mobileMenuOpen 
+                      ? 'opacity-100 rotate-0 scale-100' 
+                      : 'opacity-0 rotate-180 scale-75'
+                  }`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
             </button>
           </div>
         </div>
@@ -195,12 +257,12 @@ const Navbar = () => {
                 <div key={link.name} className="relative">
                   {link.href ? (
                     // Regular link for Contact in mobile
-                    <Link
-                      to={link.href}
+                    <a
+                      href={link.href}
                       className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:bg-gray-800 hover:text-gray-300 block"
                     >
                       {link.name}
-                    </Link>
+                    </a>
                   ) : (
                     // Button with dropdown for other items in mobile
                     <>
@@ -246,13 +308,13 @@ const Navbar = () => {
                             className="pl-4"
                           >
                             {link.submenu.map((subItem) => (
-                              <Link
+                              <a
                                 key={subItem.name}
-                                to={subItem.href}
+                                href={subItem.href}
                                 className="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-800 hover:text-gray-300"
                               >
                                 {subItem.name}
-                              </Link>
+                              </a>
                             ))}
                           </motion.div>
                         )}
@@ -265,7 +327,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 

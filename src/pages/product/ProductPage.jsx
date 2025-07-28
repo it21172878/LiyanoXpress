@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Products } from "../../utils/data";
 
@@ -49,11 +49,17 @@ const ProductPage = () => {
     "https://www.profitableratecpm.com/v54144ki?key=528322043f2eaeb1e44536b0a7e57c1c",
     "https://www.profitableratecpm.com/f01ep4wh?key=b202d6cf8fe312ae4da587fa83fcec88",
   ];
+
   const { id } = useParams();
   const navigate = useNavigate();
   const product = Products.find((p) => p.id === Number(id));
   const [isUnlocking, setIsUnlocking] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
+
+  // Scroll to top when component mounts or when id changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   const handleUnlock = () => {
     setIsUnlocking(true);
@@ -96,6 +102,11 @@ const ProductPage = () => {
     );
   }
 
+  function toSentenceCase(text) {
+    const lower = text.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
+
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <motion.button
@@ -123,14 +134,19 @@ const ProductPage = () => {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 overflow-hidden px-6"
+        className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 overflow-hidden px-6"
       >
-        <motion.div variants={fadeIn}>
-          <img
-            src={product.image}
-            alt={product.name}
-            className="rounded-3xl border-blurred-500 shadow-md w-full h-auto object-cover"
-          />
+        <motion.div
+          variants={fadeIn}
+          className="flex justify-center lg:justify-start"
+        >
+          <div className="w-full">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-auto object-contain rounded-3xl shadow-lg"
+            />
+          </div>
         </motion.div>
 
         <div className="space-y-6">
@@ -186,7 +202,9 @@ const ProductPage = () => {
 
           <motion.div variants={staggerItem} className="pt-4">
             <h2 className="text-lg font-semibold text-gray-900">Description</h2>
-            <p className="mt-2 text-gray-600">{product.description}</p>
+            <p className="mt-2 text-gray-600">
+              {toSentenceCase(product.description)}
+            </p>
           </motion.div>
 
           <motion.div variants={staggerItem} className="pt-6 pb-6">

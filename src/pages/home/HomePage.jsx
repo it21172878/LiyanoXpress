@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -20,7 +20,7 @@ const HomePage = () => {
           <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
             Discover our amazing collection
           </p>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
           initial="hidden"

@@ -31,6 +31,10 @@ const buttonVariants = {
 };
 
 const ProductCard = ({ product }) => {
+  function toSentenceCase(text) {
+    const lower = text.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
   return (
     <motion.div
       variants={cardVariants}
@@ -82,7 +86,7 @@ const ProductCard = ({ product }) => {
         </div>
 
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-          {product.description}
+          {toSentenceCase(product.category)}
         </p>
 
         <div className="flex items-center justify-between mb-4">
