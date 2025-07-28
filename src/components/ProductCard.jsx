@@ -57,15 +57,15 @@ const ProductCard = ({ product }) => {
         )} */}
       </div>
 
-      <div className="p-3 sm:p-5">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xs sm:text-lg font-medium sm:font-semibold text-gray-800 line-clamp-2 leading-tight">
+      <div className="p-2 sm:p-5">
+        <div className="flex justify-between items-start mb-1">
+          <h3 className="text-[11px] sm:text-lg font-bold sm:font-semibold text-gray-800 line-clamp-2 leading-tight">
             {product.name}
           </h3>
           {/* <span className="text-sm text-gray-500">{product.brand}</span> */}
         </div>
 
-        <div className="flex items-center mb-1 sm:mb-3">
+        <div className="flex items-center mb-0.5 sm:mb-3">
           {[...Array(5)].map((_, i) => (
             <svg
               key={i}
@@ -101,7 +101,7 @@ const ProductCard = ({ product }) => {
             )}
           </div>
           <span
-            className={`text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full self-start sm:self-auto ${
+            className={`text-xs px-1.5 sm:px-2 py-0.5 p-5 sm:py-1 rounded-full self-start sm:self-auto ${
               product.inStock
                 ? "bg-green-100 text-green-800"
                 : "bg-red-100 text-red-800"
