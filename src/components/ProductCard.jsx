@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 // src/components/products/ProductCard.jsx
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
