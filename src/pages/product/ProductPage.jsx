@@ -42,6 +42,13 @@ const progressBarVariants = {
 };
 
 const ProductPage = () => {
+  const urls = [
+    "https://www.profitableratecpm.com/rgj9t3wx?key=8c7ae6cec1988344fe02ade3465b1ef7",
+    "https://www.profitableratecpm.com/s981mftq5?key=756d502ab647f3e44220c3318289145f",
+    "https://www.profitableratecpm.com/k2v1sqzc?key=301ce07c3c76190119d05a625a11cf6e",
+    "https://www.profitableratecpm.com/v54144ki?key=528322043f2eaeb1e44536b0a7e57c1c",
+    "https://www.profitableratecpm.com/f01ep4wh?key=b202d6cf8fe312ae4da587fa83fcec88",
+  ];
   const { id } = useParams();
   const navigate = useNavigate();
   const product = Products.find((p) => p.id === Number(id));
@@ -50,6 +57,23 @@ const ProductPage = () => {
 
   const handleUnlock = () => {
     setIsUnlocking(true);
+
+    // Get a random URL and open it immediately to avoid popup blockers
+    const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+
+    try {
+      // Open immediately to avoid popup blocker
+      const popup = window.open(randomUrl, "_blank");
+
+      // Check if popup was blocked
+      if (!popup || popup.closed || typeof popup.closed === "undefined") {
+        console.warn("Popup was blocked by browser");
+        // Optionally show a message to user about popup blocker
+      }
+    } catch (error) {
+      console.error("Failed to open popup:", error);
+    }
+
     // Simulate unlock process
     setTimeout(() => {
       setIsUnlocking(false);
@@ -72,20 +96,6 @@ const ProductPage = () => {
     );
   }
 
-  const urls = [
-    "https://www.profitableratecpm.com/rgj9t3wx?key=8c7ae6cec1988344fe02ade3465b1ef7",
-    "https://www.profitableratecpm.com/s981mftq5?key=756d502ab647f3e44220c3318289145f",
-    "https://www.profitableratecpm.com/k2v1sqzc?key=301ce07c3c76190119d05a625a11cf6e",
-    "https://www.profitableratecpm.com/v54144ki?key=528322043f2eaeb1e44536b0a7e57c1c",
-    "https://www.profitableratecpm.com/f01ep4wh?key=b202d6cf8fe312ae4da587fa83fcec88",
-  ];
-
-  // Get a random URL
-  const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-  // setTimeout(() => {
-  // Open the random URL in a new tab
-  window.open(randomUrl, "_blank");
-  // }, 3000);
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <motion.button
