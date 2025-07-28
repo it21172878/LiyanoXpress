@@ -6,7 +6,7 @@ import ProductCard from "../../components/ProductCard";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-6 sm:py-12 px-2 sm:px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -30,11 +30,11 @@ const HomePage = () => {
             visible: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.1,
+                staggerChildren: 0.05,
               },
             },
           }}
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          className="grid grid-cols-3 gap-2 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
           {Products.map((product) => (
             <ProductCard key={product.id} product={product} />
