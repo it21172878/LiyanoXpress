@@ -12,7 +12,7 @@ const MenFashionsPage = () => {
   );
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {MenFashionsProducts.length > 0 ? (
           <motion.div
@@ -27,7 +27,8 @@ const MenFashionsPage = () => {
                 },
               },
             }}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            // className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className="grid grid-cols-3 gap-2 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
             {MenFashionsProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
