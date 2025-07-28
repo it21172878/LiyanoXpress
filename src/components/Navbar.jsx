@@ -64,42 +64,50 @@ const Navbar = () => {
       setIsScrolled(scrollPosition > 50); // Change threshold as needed
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.nav 
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-gray-950/80 backdrop-blur-md border-b border-gray-800/50' 
-          : 'bg-gray-950'
+    <motion.nav
+      className={`sticky top-0 z-50 transition-all duration-100 ${
+        isScrolled
+          ? "bg-gray-950/80 backdrop-blur-md border-b border-gray-800/50"
+          : "bg-gray-950"
       }`}
       animate={{
         height: isScrolled ? 56 : 64, // Reduced height when scrolled
       }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.1 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 items-center justify-center">
-        <div className={`flex items-center transition-all duration-300 ${
-          isScrolled ? 'h-14' : 'h-16'
-        }`}>
+        <div
+          className={`flex items-center transition-all duration-300 ${
+            isScrolled ? "h-14" : "h-16"
+          }`}
+        >
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <span className={`font-semibold text-gray-300 transition-all duration-300 ${
-                isScrolled ? 'text-base md:text-lg' : 'text-lg md:text-2xl'
-              }`}>
+              <span
+                className={`font-semibold text-gray-300 transition-all duration-300 ${
+                  isScrolled ? "text-base md:text-lg" : "text-lg md:text-2xl"
+                }`}
+              >
                 liyano
               </span>
-              <span className={`text-gray-500 font-bold transition-all duration-300 ${
-                isScrolled ? 'text-2xl md:text-3xl' : 'text-3xl md:text-5xl'
-              }`}>
+              <span
+                className={`text-gray-500 font-bold transition-all duration-300 ${
+                  isScrolled ? "text-2xl md:text-3xl" : "text-3xl md:text-5xl"
+                }`}
+              >
                 X
               </span>
-              <span className={`font-semibold text-gray-300 transition-all duration-300 ${
-                isScrolled ? 'text-sm md:text-lg' : 'text-lg md:text-2xl'
-              }`}>
+              <span
+                className={`font-semibold text-gray-300 transition-all duration-300 ${
+                  isScrolled ? "text-sm md:text-lg" : "text-lg md:text-2xl"
+                }`}
+              >
                 press
               </span>
             </a>
@@ -192,17 +200,17 @@ const Navbar = () => {
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-300 hover:bg-gray-800 focus:outline-none transition-colors duration-200"
             >
               <span className="sr-only">
-                {mobileMenuOpen ? 'Close main menu' : 'Open main menu'}
+                {mobileMenuOpen ? "Close main menu" : "Open main menu"}
               </span>
-              
+
               {/* Animated icon transition */}
               <div className="relative w-6 h-6">
                 {/* Hamburger Menu Icon */}
                 <svg
                   className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-                    mobileMenuOpen 
-                      ? 'opacity-0 rotate-180 scale-75' 
-                      : 'opacity-100 rotate-0 scale-100'
+                    mobileMenuOpen
+                      ? "opacity-0 rotate-180 scale-75"
+                      : "opacity-100 rotate-0 scale-100"
                   }`}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -220,9 +228,9 @@ const Navbar = () => {
                 {/* Close/X Icon */}
                 <svg
                   className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-                    mobileMenuOpen 
-                      ? 'opacity-100 rotate-0 scale-100' 
-                      : 'opacity-0 rotate-180 scale-75'
+                    mobileMenuOpen
+                      ? "opacity-100 rotate-0 scale-100"
+                      : "opacity-0 rotate-180 scale-75"
                   }`}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

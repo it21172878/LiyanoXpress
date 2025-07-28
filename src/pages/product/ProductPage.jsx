@@ -134,7 +134,7 @@ const ProductPage = () => {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 overflow-hidden px-6"
+        className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 overflow-hidden px-4 sm:px-6"
       >
         <motion.div
           variants={fadeIn}
@@ -144,44 +144,56 @@ const ProductPage = () => {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-auto object-contain rounded-3xl shadow-lg"
+              className="w-full h-auto object-contain rounded-2xl lg:rounded-3xl shadow-lg"
             />
           </div>
         </motion.div>
 
-        <div className="space-y-6">
-          <motion.div variants={staggerItem}>
-            <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
-            <p className="text-lg text-gray-500">{product.category}</p>
+        <div className="space-y-4 lg:space-y-6">
+          <motion.div variants={staggerItem} className="text-left">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+              {product.name}
+            </h1>
+            <p className="text-base sm:text-lg text-gray-500 mt-2">
+              {product.category}
+            </p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="flex items-center">
-            {[...Array(5)].map((_, i) => (
-              <svg
-                key={i}
-                className={`w-5 h-5 ${
-                  i < Math.floor(product.rating)
-                    ? "text-yellow-400"
-                    : "text-gray-300"
-                }`}
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            ))}
-            <span className="text-sm text-gray-500 ml-2">
+          <motion.div
+            variants={staggerItem}
+            className="flex items-center gap-3 text-left"
+          >
+            <div className="flex items-center">
+              {[...Array(5)].map((_, i) => (
+                <svg
+                  key={i}
+                  className={`w-4 h-4 sm:w-5 sm:h-5 ${
+                    i < Math.floor(product.rating)
+                      ? "text-yellow-400"
+                      : "text-gray-300"
+                  }`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span className="text-xs sm:text-sm text-gray-500">
               ({product.reviews} reviews)
             </span>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="space-y-4">
-            <div className="flex items-baseline">
-              <span className="text-3xl font-bold text-gray-900">
+          <motion.div
+            variants={staggerItem}
+            className="space-y-3 lg:space-y-4 text-left"
+          >
+            <div className="flex items-baseline gap-2 sm:gap-3">
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                 ${product.price.toFixed(2)}
               </span>
               {product.originalPrice > product.price && (
-                <span className="ml-2 text-lg text-gray-500 line-through">
+                <span className="text-base sm:text-lg lg:text-xl text-gray-500 line-through">
                   ${product.originalPrice.toFixed(2)}
                 </span>
               )}
@@ -189,7 +201,7 @@ const ProductPage = () => {
 
             <div className="flex items-center">
               <span
-                className={`text-sm px-2.5 py-1 rounded-full ${
+                className={`text-xs sm:text-sm px-2 sm:px-2.5 py-1 rounded-full font-medium ${
                   product.inStock
                     ? "bg-green-100 text-green-800"
                     : "bg-red-100 text-red-800"
@@ -200,23 +212,28 @@ const ProductPage = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="pt-4">
-            <h2 className="text-lg font-semibold text-gray-900">Description</h2>
-            <p className="mt-2 text-gray-600">
+          <motion.div variants={staggerItem} className="pt-3 lg:pt-4 text-left">
+            <h2 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 mb-2 lg:mb-3">
+              Description
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
               {toSentenceCase(product.description)}
             </p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="pt-6 pb-6">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full">
+          <motion.div
+            variants={staggerItem}
+            className="pt-4 lg:pt-6 pb-4 lg:pb-6"
+          >
+            <div className="flex flex-col gap-3 sm:gap-4 w-full">
               {/* Unlock Now Button with Progress Bar */}
-              <div className="relative w-full ">
+              <div className="relative w-full">
                 <motion.button
-                  whileHover={!isUnlocking ? { scale: 1.03 } : {}}
-                  whileTap={!isUnlocking ? { scale: 0.97 } : {}}
+                  whileHover={!isUnlocking ? { scale: 1.02 } : {}}
+                  whileTap={!isUnlocking ? { scale: 0.98 } : {}}
                   onClick={handleUnlock}
                   disabled={isUnlocking || isUnlocked}
-                  className={`w-full py-3 px-6 rounded-lg font-medium ${
+                  className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-medium text-sm sm:text-base transition-all duration-200 ${
                     isUnlocking
                       ? "bg-gray-300 text-gray-500 cursor-wait"
                       : isUnlocked
@@ -236,24 +253,23 @@ const ProductPage = () => {
                     className="absolute bottom-0 left-0 h-1 bg-gray-950 rounded-lg"
                     variants={progressBarVariants}
                     initial="initial"
-                    // animate="animate"
                     animate={{ width: "100%" }}
                     transition={{ duration: 5, ease: "linear" }}
                   />
                 )}
               </div>
 
-              {/* Congrats Button */}
+              {/* Claim Your Reward Button */}
               <motion.button
                 initial={{ opacity: 1 }}
                 animate={{
                   opacity: isUnlocked ? 1 : 0.5,
                   y: isUnlocked ? 0 : 2,
                 }}
-                whileHover={isUnlocked ? { scale: 1.03 } : {}}
-                whileTap={isUnlocked ? { scale: 0.97 } : {}}
+                whileHover={isUnlocked ? { scale: 1.02 } : {}}
+                whileTap={isUnlocked ? { scale: 0.98 } : {}}
                 onClick={isUnlocked ? handleCongratsClick : undefined}
-                className={`w-full py-3 px-6 rounded-lg font-medium ${
+                className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-medium text-sm sm:text-base transition-all duration-200 ${
                   isUnlocked
                     ? "bg-gray-950 hover:bg-gray-300 hover:border hover:border-gray-950 text-white hover:text-gray-950 hover:font-bold cursor-pointer"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
