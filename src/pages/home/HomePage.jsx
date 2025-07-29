@@ -3,8 +3,19 @@
 import { motion } from "framer-motion";
 import { Products } from "../../utils/data";
 import ProductCard from "../../components/ProductCard";
+import Pagination from "../../components/Pagination";
+import usePagination from "../../hooks/usePagination";
 
 const HomePage = () => {
+  const {
+    currentPage,
+    totalPages,
+    currentItems,
+    totalItems,
+    itemsPerPage,
+    handlePageChange,
+  } = usePagination(Products, 12); // Show 12 products per page
+
   return (
     <div className="min-h-screen py-6 sm:py-12 px-2 sm:px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -36,10 +47,19 @@ const HomePage = () => {
           }}
           className="grid grid-cols-3 gap-2 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
-          {Products.map((product) => (
+          {currentItems.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </motion.div>
+
+        {/* Pagination Component */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          itemsPerPage={itemsPerPage}
+          totalItems={totalItems}
+        />
       </div>
     </div>
   );

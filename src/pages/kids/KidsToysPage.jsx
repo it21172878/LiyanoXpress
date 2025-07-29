@@ -3,34 +3,58 @@
 import { motion } from "framer-motion";
 import { Products } from "../../utils/data";
 import ProductCard from "../../components/ProductCard";
+import Pagination from "../../components/Pagination";
+import usePagination from "../../hooks/usePagination";
 import { Ban } from "lucide-react";
 
 const KidsToysPage = () => {
   // Filter products first to get only Kid's Toys
-  const kidsToysProducts = Products.filter(product => product.category === "Kid's Toys");
+  const kidsToysProducts = Products.filter(
+    (product) => product.category === "Kid's Toys"
+  );
+
+  const {
+    currentPage,
+    totalPages,
+    currentItems,
+    totalItems,
+    itemsPerPage,
+    handlePageChange,
+  } = usePagination(kidsToysProducts, 12); // Show 12 products per page
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {kidsToysProducts.length > 0 ? (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.1,
+          <>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
                 },
-              },
-            }}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-          >
-            {kidsToysProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </motion.div>
+              }}
+              className="grid grid-cols-3 gap-2 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            >
+              {currentItems.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </motion.div>
+
+            {/* Pagination Component */}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              itemsPerPage={itemsPerPage}
+              totalItems={totalItems}
+            />
+          </>
         ) : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -43,7 +67,8 @@ const KidsToysPage = () => {
               No Kid's Toys Found
             </h2>
             <p className="text-gray-500 mt-2 max-w-md">
-              Sorry, we don't have any Kid's Toys available at the moment. Please check back later!
+              Sorry, we don't have any Kid's Toys available at the moment.
+              Please check back later!
             </p>
           </motion.div>
         )}
