@@ -10,8 +10,10 @@ import MenFashionsPage from "./pages/men/MenFashionsPage";
 import MenAccessoriesPage from "./pages/men/MenAccessoriesPage";
 import KidsFashionsPage from "./pages/kids/KidsFashionsPage";
 import KidsToysPage from "./pages/kids/KidsToysPage";
+import usePageTracking from "./hooks/usePageTracking";
 
 function App() {
+  usePageTracking();
   return (
     <div className="bg-white min-h-screen">
       <Navbar />

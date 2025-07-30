@@ -67,7 +67,7 @@ const Pagination = ({
           className={`flex items-center px-2 sm:px-3 py-2 text-sm font-medium rounded-md transition-colors ${
             currentPage === 1
               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-              : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+              : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900 cursor-pointer"
           }`}
         >
           <ChevronLeft className="w-4 h-4" />
@@ -87,8 +87,8 @@ const Pagination = ({
                   onClick={() => onPageChange(page)}
                   className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     currentPage === page
-                      ? "bg-gray-900 text-white"
-                      : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                      ? "bg-gray-900 text-white cursor-pointer"
+                      : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900 cursor-pointer"
                   }`}
                 >
                   {page}
@@ -107,7 +107,7 @@ const Pagination = ({
           className={`flex items-center px-2 sm:px-3 py-2 text-sm font-medium rounded-md transition-colors ${
             currentPage === totalPages
               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-              : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+              : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900 cursor-pointer"
           }`}
         >
           <span className="hidden sm:inline mr-1">Next</span>
