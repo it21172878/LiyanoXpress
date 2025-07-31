@@ -655,10 +655,9 @@ export const Products = [
     name: "Party King Women's Poisonous Villain Costume",
     price: 29.35,
     originalPrice: 116.0,
-    image: "https://m.media-amazon.com/images/I/715+bQryoLL._AC_SY550_.jpg",
+    image: "https://m.media-amazon.com/images/I/51-+TWLeuML._AC_SY741_.jpg",
     images: [
-      "https://m.media-amazon.com/images/I/7140yFfzo8L._AC_SY550_.jpg",
-      "https://m.media-amazon.com/images/I/61sc9-A2OKL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51SPZTzdFNL._AC_SY741_.jpg",
     ],
     description:
       "Includes green sequin dress with side slit, matching fingerless gloves, and ivy headpiece. Wig not included. Sequin dress with ivy trim and ivy headpiece.",
