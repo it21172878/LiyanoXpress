@@ -20,7 +20,7 @@ const MenAccessoriesPage = () => {
     totalItems,
     itemsPerPage,
     handlePageChange,
-  } = usePagination(MenAccessoriesProducts, 12); // Show 12 products per page
+  } = usePagination(MenAccessoriesProducts, 28); // Show 28 products per page
 
   return (
     <div className="min-h-screen py-6 px-4 sm:px-6 lg:px-8">

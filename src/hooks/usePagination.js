@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-const usePagination = (items, itemsPerPage = 12) => {
+const usePagination = (items, itemsPerPage = 28) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // Calculate total pages

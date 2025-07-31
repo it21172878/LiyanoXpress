@@ -14,7 +14,7 @@ const HomePage = () => {
     totalItems,
     itemsPerPage,
     handlePageChange,
-  } = usePagination(Products, 12); // Show 12 products per page
+  } = usePagination(Products, 28); // Show 28 products per page
 
   return (
     <div className="min-h-screen py-6 sm:py-12 px-2 sm:px-4 lg:px-8">
